@@ -13,7 +13,8 @@ class App extends Component {
       items:[],
       currentItem: {text:'', key:''},
       currentItemForField: {text:'', key:''},
-      edit: false
+      edit: false,
+      editItem: {}
     }
   }
   handleInput = e => {
@@ -58,16 +59,19 @@ class App extends Component {
     })
   }
   setAttr = (obj, key) => {
+    // obj - item to replace
+    // key = key for item to be replaced
+    
     console.log('Triggered!')
     if(obj){
       const updItems = this.state.items.map(item=>{
         if(item.key === key){
-          return item = obj
-        }
-        
+           return item = obj
+        }else return item
       })
       this.setState({
-        items: updItems
+        items: updItems,
+        itemClicked: obj
       })
     }
     this.setState({
@@ -93,6 +97,7 @@ class App extends Component {
               edit={this.state.edit}
               handleInput={this.handleInput2}
               currentItem={this.state.currentItemForField}
+              itemClicked={this.state.itemClicked}
             />
       </div>
     );
