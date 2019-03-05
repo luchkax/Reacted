@@ -3,15 +3,16 @@ import React, { Component } from 'react'
 class TodoItems extends Component {
     
     componentDidUpdate() {
-       // this.inpt.current.focus()
+        //if(this.props.edit === false) this.props.inputElement2.current.focus()
     }
 
-   taskToEdit = (item, edit) => {
+   taskToEdit = (item) => {
        if(item.key === this.props.itemClicked.key){
            return <li key={item.key}>
        <input
+            autoFocus="true"
             type="text" 
-            ref={this.inpt} 
+            ref={this.props.inputElement2} 
             onChange={this.props.handleInput} 
             defaultValue={item.text}>
        </input>
@@ -39,9 +40,8 @@ class TodoItems extends Component {
 
   createTasks = item => {
       console.log(this.props.edit)
-
     if(this.props.edit){
-        return this.taskToEdit(item, this.props.edit)
+        return this.taskToEdit(item)
     }else{
         return this.taskToShow(item)
   }

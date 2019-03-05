@@ -6,7 +6,7 @@ import TodoItems from './TodoItems';
 
 class App extends Component {
   inputElement = React.createRef()
-  
+  inputElement2 = React.createRef()
   constructor(){
     super()
     this.state = {
@@ -77,6 +77,7 @@ class App extends Component {
     this.setState({
         edit: !this.state.edit
     })
+    //this.inputElement.focus()
     
   } 
 
@@ -84,12 +85,13 @@ class App extends Component {
     return (
       <div className="App">
           <TodoList 
-            addItem={this.addItem}
             inputElement={this.inputElement}
+            addItem={this.addItem}
             handleInput={this.handleInput}
             currentItem={this.state.currentItem}
             />
             <TodoItems 
+              inputElement2={this.inputElement}
               entries={this.state.items}
               editItem={this.editItem}
               deleteItem={this.deleteItem}
