@@ -13,11 +13,36 @@ body {
 .todoListMain .header input {
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #FFF;
+  border: 2px solid blue;
   width: 165px;
+  border-radius: 5px;
+}
+
+.mainForm input {
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid grey;
+  width: 20%;
+  margin-left: 40%;
+}
+.mainForm p {
+  color: blue
+}
+.mainForm {
+  
 }
 
 .todoListMain .header button {
+  padding: 10px;
+  font-size: 16px;
+  margin: 10px;
+  margin-right: 0px;
+  background-color: #0066FF;
+  color: #FFF;
+  border: 2px solid #0066FF;
+}
+
+.mainForm button {
   padding: 10px;
   font-size: 16px;
   margin: 10px;

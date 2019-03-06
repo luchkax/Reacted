@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import TodoList from './TodoList';
-import TodoItems from './TodoItems';
+import TodoList from './Components/TodoList';
+import TodoItems from './Components/TodoItems';
+import FormData from './Components/FormData';
 
 
 class App extends Component {
@@ -14,7 +15,8 @@ class App extends Component {
       currentItem: {text:'', key:''},
       currentItemForField: {text:'', key:''},
       edit: false,
-      editItem: {}
+      editItem: {},
+      login: {email:'', password:''}
     }
   }
   handleInput = e => {
@@ -32,7 +34,13 @@ class App extends Component {
     this.setState({
       currentItemForField
     })
-  }    
+  } 
+  handleForm = (obj) => {
+    this.setState({
+      //login: {[obj.name]: obj.value}
+
+    })
+  }   
   addItem = e => {
     e.preventDefault()
     const newItem = this.state.currentItem
@@ -77,7 +85,7 @@ class App extends Component {
     this.setState({
         edit: !this.state.edit
     })
-    //this.inputElement.focus()
+    if(this.inputElement) this.inputElement.current.focus()
     
   } 
 
@@ -100,6 +108,10 @@ class App extends Component {
               handleInput={this.handleInput2}
               currentItem={this.state.currentItemForField}
               itemClicked={this.state.itemClicked}
+            />
+            <FormData
+              login={this.state.login}
+              handleForm={this.handleForm}
             />
       </div>
     );

@@ -1,9 +1,21 @@
 import React, { Component } from 'react'
 
 class TodoItems extends Component {
-    
+    constructor(props){
+        super(props)
+
+        this.iElement2=null;
+        this.setiElement2 = element => {
+            this.iElement2 = element;
+        };
+
+        this.focusiElement = () =>{
+            if(this.iElement2) this.iElement2.focus()
+        }
+    }
     componentDidUpdate() {
         //if(this.props.edit === false) this.props.inputElement2.current.focus()
+        this.focusiElement()
     }
 
    taskToEdit = (item) => {
@@ -12,7 +24,8 @@ class TodoItems extends Component {
        <input
             autoFocus="true"
             type="text" 
-            ref={this.props.inputElement2} 
+            //ref={this.props.inputElement2} 
+            ref={this.setiElement2} 
             onChange={this.props.handleInput} 
             defaultValue={item.text}>
        </input>
