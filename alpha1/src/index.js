@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import ListData from './Components/ListData'
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/css/bootstrap-theme.css'
@@ -11,8 +11,9 @@ import 'bootstrap/dist/css/bootstrap-theme.css'
 const routing = (
     <Router>
     <div>
-      <Route exact path="/" component={App} />
+      <App/>
       <Route path="/users" component={ListData} />
+        {/* <Route path="/form" component={FormData} /> */}
     </div>
   </Router>
 )

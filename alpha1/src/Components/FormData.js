@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import FormErrors from './FormErrors'
+//import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 
 class FormData extends Component {
     componentDidUpdate() {
@@ -19,10 +20,10 @@ class FormData extends Component {
     formLook = () => {
         return (
         <div className='mainForm'>
-            <div className='panel panel-default'>
-              <FormErrors 
-                formErrors={this.props.formError} 
-               />
+            <div className='errortab'>
+                <FormErrors 
+                    formErrors={this.props.formError} 
+               /> 
             </div>
             <form className='demoForm'>
             <h2>Sign up</h2>

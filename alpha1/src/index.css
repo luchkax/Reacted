@@ -10,8 +10,12 @@ body {
   flex-direction: column-reverse;
 }
 
-.formErrors {
-  
+.errortab {
+  background-color: yellow;
+  color: red;
+  width: 25%;
+  margin-left: 38%;
+  border-radius: 5px;
 }
 
 .todoListMain .header input {

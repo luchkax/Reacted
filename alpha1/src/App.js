@@ -6,6 +6,11 @@ import TodoItems from './Components/TodoItems';
 import FormData from './Components/FormData';
 
 
+{/* <Router>
+<div>
+    <Route path="/form" component={FormData} />
+</div>
+</Router> */}
 
 class App extends Component {
   inputElement = React.createRef()
@@ -24,7 +29,9 @@ class App extends Component {
       passwordValid: false,
       formValid: false
     }
+
   }
+  
   handleInput = e => {
     console.log(e.target)
     const itemText = e.target.value
@@ -120,10 +127,23 @@ validateForm() {
     if(this.inputElement) this.inputElement.current.focus()
     
   } 
+  formData = () => {
+    return (<Route path="/form" render={(props) =>
+            <FormData {...props}
+                login={this.state.login}
+                handleForm={this.handleForm}
+                formError={this.state.formErrors}
+            />
+            }/>)
+  }
+
+  
 
   render() {
     return (
       <div className="App">
+          <Link to="/users">Users | </Link>
+          <Link to="/form">Form</Link>
           <TodoList 
             inputElement={this.inputElement}
             addItem={this.addItem}
@@ -141,16 +161,12 @@ validateForm() {
               currentItem={this.state.currentItemForField}
               itemClicked={this.state.itemClicked}
             />
-
-            <FormData
-              login={this.state.login}
-              handleForm={this.handleForm}
-              formError={this.state.formErrors}
-            />
-            <Link to="/users">Users</Link>
+            {this.formData()}
       </div>
     );
   }
 }
+
+
 
 export default App;
