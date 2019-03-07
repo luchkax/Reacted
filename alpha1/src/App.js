@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import TodoList from './Components/TodoList';
 import TodoItems from './Components/TodoItems';
 import FormData from './Components/FormData';
+
 
 
 class App extends Component {
@@ -16,7 +18,11 @@ class App extends Component {
       currentItemForField: {text:'', key:''},
       edit: false,
       editItem: {},
-      login: {email:'', password:''}
+      login: {email:'', password:''},
+      formErrors: {email: '', password: ''},
+      emailValid: false,
+      passwordValid: false,
+      formValid: false
     }
   }
   handleInput = e => {
@@ -36,11 +42,37 @@ class App extends Component {
     })
   } 
   handleForm = (obj) => {
-    this.setState({
-      //login: {[obj.name]: obj.value}
 
-    })
+    this.setState({
+      login: {...this.state.login, [obj.name]: obj.value}
+    }, ()=> { this.validateField(obj.name, obj.value)})
   }   
+  validateField = (fieldName, value) => {
+    let fieldValidationErrors = this.state.formErrors;
+  let emailValid = this.state.emailValid;
+  let passwordValid = this.state.passwordValid;
+
+  switch(fieldName) {
+    case 'email':
+      emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+      fieldValidationErrors.email = emailValid ? '' : ' is invalid';
+      break;
+    case 'password':
+      passwordValid = value.length >= 6;
+      fieldValidationErrors.password = passwordValid ? '': ' is too short';
+      break;
+    default:
+      break;
+  }
+  this.setState({formErrors: fieldValidationErrors,
+                  emailValid: emailValid,
+                  passwordValid: passwordValid
+                }, this.validateForm);
+}
+
+validateForm() {
+  this.setState({formValid: this.state.emailValid && this.state.passwordValid});
+}
   addItem = e => {
     e.preventDefault()
     const newItem = this.state.currentItem
@@ -109,10 +141,13 @@ class App extends Component {
               currentItem={this.state.currentItemForField}
               itemClicked={this.state.itemClicked}
             />
+
             <FormData
               login={this.state.login}
               handleForm={this.handleForm}
+              formError={this.state.formErrors}
             />
+            <Link to="/users">Users</Link>
       </div>
     );
   }

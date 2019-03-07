@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import FormErrors from './FormErrors'
 
 class FormData extends Component {
     componentDidUpdate() {
@@ -18,6 +19,11 @@ class FormData extends Component {
     formLook = () => {
         return (
         <div className='mainForm'>
+            <div className='panel panel-default'>
+              <FormErrors 
+                formErrors={this.props.formError} 
+               />
+            </div>
             <form className='demoForm'>
             <h2>Sign up</h2>
             <div className='form-group'>
@@ -28,7 +34,7 @@ class FormData extends Component {
                 <input 
                     type='email' 
                     className='form-control'
-                    value={this.props.login.email}
+                   // value={this.props.login.email}
                     onChange={(event) => this.handleUserInput(event)}
                     name='email' />
             </div>
@@ -40,7 +46,7 @@ class FormData extends Component {
                 <input 
                     type='password' 
                     className='form-control'
-                    value={this.props.login.password}
+                    //value={this.props.login.password}
                     onChange={(event) => this.handleUserInput(event)}
                     name='password' />
             </div>
